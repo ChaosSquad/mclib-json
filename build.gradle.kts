@@ -28,7 +28,7 @@ paperweight.reobfArtifactConfiguration = io.papermc.paperweight.userdev.ReobfArt
 
 dependencies {
     paperweight.paperDevBundle("1.21.4-R0.1-SNAPSHOT")
-    implementation("net.chaossquad:mclib:main-e95d70f19fde050fe80a799f4f289c032bc3d07c")
+    compileOnly("net.chaossquad:mclib:main-9549d74546311c5b81e8b35b60c1e78618450dc7")
     compileOnly("org.json:json:20240303")
 }
 
