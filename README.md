@@ -28,6 +28,6 @@ repositories {
 
 dependencies {
     // [...]
-    compileOnly("net.chaossquad:mclib-json:main-188b6f2059b1a8bf1bf547c6aeb98a0f89937a74")
+    implementation("net.chaossquad:mclib-json:main-188b6f2059b1a8bf1bf547c6aeb98a0f89937a74")
 }
 ```
