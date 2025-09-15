@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
     // [...]
-    implementation("net.chaossquad:mclib-json:main-188b6f2059b1a8bf1bf547c6aeb98a0f89937a74") {
+    implementation("net.chaossquad:mclib-json:main-3ff1b6dc60b0095802d12edf43464fadf6481fdd") {
         exclude(group = "net.chaossquad", module = "mclib")
     }
 }
