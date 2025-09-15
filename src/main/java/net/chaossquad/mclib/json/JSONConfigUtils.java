@@ -223,7 +223,7 @@ public final class JSONConfigUtils {
 
         for (JSONObject container : data.toList().stream().filter(object -> object instanceof JSONObject).map(object -> (JSONObject) object).toList()) {
 
-            switch (container.optString("type")) {
+            switch (container.optString("type", null)) {
 
                 case "BOOLEAN" -> target.set(deserializeNamespacedKey(container.optJSONObject("key")), PersistentDataType.BOOLEAN, container.getBoolean("value"));
                 case "BYTE" -> target.set(deserializeNamespacedKey(container.optJSONObject("key")), PersistentDataType.BYTE, (byte) container.getInt("value"));
@@ -441,7 +441,7 @@ public final class JSONConfigUtils {
     public static void deserializeItemMeta(JSONObject data, ItemMeta target) {
 
         // Display Name
-        String displayNameStr = data.optString("displayName");
+        String displayNameStr = data.optString("displayName", null);
         if (displayNameStr != null) target.displayName(MiniMessage.miniMessage().deserialize(displayNameStr));
 
         // Lore
@@ -450,7 +450,7 @@ public final class JSONConfigUtils {
         if (loreData != null) {
             List<Component> lore = new ArrayList<>();
             for (int i = 0; i < loreData.length(); i++) {
-                String line = loreData.optString(i);
+                String line = loreData.optString(i, null);
                 if (line == null) continue;
                 lore.add(MiniMessage.miniMessage().deserialize(line));
             }
@@ -476,7 +476,7 @@ public final class JSONConfigUtils {
         JSONArray itemFlags = data.optJSONArray("item_flags");
         if (itemFlags != null) {
             for (int i = 0; i < itemFlags.length(); i++) {
-                String flagName = itemFlags.optString(i);
+                String flagName = itemFlags.optString(i, null);
                 if (flagName == null) continue;
                 ItemFlag flag;
                 try {
@@ -570,7 +570,7 @@ public final class JSONConfigUtils {
         item.setAmount(data.optInt("amount", 1));
 
         ItemMeta meta = item.getItemMeta();
-        deserializeItemMeta(data, meta);
+        deserializeItemMeta(data.optJSONObject("meta", new JSONObject()), meta);
         item.setItemMeta(meta);
 
         return item;
