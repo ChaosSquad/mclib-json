@@ -28,7 +28,8 @@ repositories {
 
 dependencies {
     // [...]
-    implementation("net.chaossquad:mclib-json:main-3ff1b6dc60b0095802d12edf43464fadf6481fdd") {
+    compileOnly("net.chaossquad:mclib:main-9549d74546311c5b81e8b35b60c1e78618450dc7") // Same or higher version of mclib required
+    implementation("net.chaossquad:mclib-json:main-05a36246845af9928448b56a45097fab44ba57cd") {
         exclude(group = "net.chaossquad", module = "mclib")
     }
 }
