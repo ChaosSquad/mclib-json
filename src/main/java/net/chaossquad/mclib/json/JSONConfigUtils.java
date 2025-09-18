@@ -221,7 +221,8 @@ public final class JSONConfigUtils {
      */
     public static void deserializePersistentDataContainer(JSONArray data, PersistentDataContainer target) {
 
-        for (JSONObject container : data.toList().stream().filter(object -> object instanceof JSONObject).map(object -> (JSONObject) object).toList()) {
+        for (Object o : data) {
+            if (!(o instanceof JSONObject container)) continue;
 
             switch (container.optString("type", null)) {
 
