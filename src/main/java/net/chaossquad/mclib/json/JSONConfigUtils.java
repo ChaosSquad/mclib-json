@@ -318,19 +318,19 @@ public final class JSONConfigUtils {
         }
 
         if (data.has("custom_effects")) {
-            JSONArray effects = new JSONArray();
+            JSONArray effects = data.getJSONArray("custom_effects");
             for (int i = 0; i < effects.length(); i++) {
-                JSONObject effectData = new JSONObject();
-                PotionEffectType type = Registry.EFFECT.get(NamespacedKey.minecraft(data.getString("key")));
+                JSONObject effectData = effects.getJSONObject(i);
+                PotionEffectType type = Registry.EFFECT.get(NamespacedKey.minecraft(effectData.getString("key")));
                 if (type == null) continue;
 
                 PotionEffect effect = new PotionEffect(
                         type,
-                        data.getInt("duration"),
-                        data.getInt("amplifier"),
-                        data.getBoolean("ambient"),
-                        data.getBoolean("particles"),
-                        data.getBoolean("icon")
+                        effectData.getInt("duration"),
+                        effectData.getInt("amplifier"),
+                        effectData.getBoolean("ambient"),
+                        effectData.getBoolean("particles"),
+                        effectData.getBoolean("icon")
                 );
                 potion.addCustomEffect(effect, true);
             }
